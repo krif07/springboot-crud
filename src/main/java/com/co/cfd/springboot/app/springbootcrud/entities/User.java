@@ -2,6 +2,8 @@ package com.co.cfd.springboot.app.springbootcrud.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,9 +33,10 @@ public class User {
 
     @NotBlank
     @Size(min = 4, max = 25)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    private boolean enabled;
+    private Boolean enabled;
 
     @ManyToMany
     @JoinTable(
@@ -72,10 +75,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
     public List<Role> getRoles() {

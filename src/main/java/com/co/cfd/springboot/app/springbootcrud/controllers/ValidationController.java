@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 
+@Component
 public class ValidationController {
     ResponseEntity<?> validation(BindingResult result) {
         Map<String, String> errors = new HashMap<>();
