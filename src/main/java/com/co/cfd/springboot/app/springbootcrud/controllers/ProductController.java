@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/products")
-public class ProductController {
+public class ProductController extends ValidationController {
 
     @Autowired
     private IProductService service;
@@ -76,13 +76,5 @@ public class ProductController {
             return ResponseEntity.ok(pDeleteOptional.get());
         }
         return ResponseEntity.notFound().build();
-    }
-
-    private ResponseEntity<?> validation(BindingResult result) {
-        Map<String, String> errors = new HashMap<>();
-        result.getFieldErrors().forEach(err -> {
-            errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
-        });
-        return ResponseEntity.badRequest().body(errors);
     }
 }
