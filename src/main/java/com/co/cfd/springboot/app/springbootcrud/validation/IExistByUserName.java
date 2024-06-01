@@ -1,4 +1,4 @@
-package com.co.cfd.springboot.app.springbootcrud.services;
+package com.co.cfd.springboot.app.springbootcrud.validation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

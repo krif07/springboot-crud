@@ -3,7 +3,7 @@ package com.co.cfd.springboot.app.springbootcrud.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.co.cfd.springboot.app.springbootcrud.services.IExistByUserName;
+import com.co.cfd.springboot.app.springbootcrud.validation.IExistByUserName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -37,7 +37,6 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(min = 4, max = 25)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -64,12 +63,7 @@ public class User {
     public User() {
         roles = new ArrayList<>();
     }
-    public User(String username, String password, boolean enabled) {
-        super();
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-    }
+    
     public Long getId() {
         return id;
     }

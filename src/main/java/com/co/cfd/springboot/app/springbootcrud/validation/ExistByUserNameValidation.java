@@ -1,7 +1,9 @@
-package com.co.cfd.springboot.app.springbootcrud.services;
+package com.co.cfd.springboot.app.springbootcrud.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.co.cfd.springboot.app.springbootcrud.services.IUserService;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -14,7 +16,10 @@ public class ExistByUserNameValidation implements ConstraintValidator<IExistByUs
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext context) {
-       return !userService.existsByUsername(username);
+        if(userService == null) {
+            return true;
+        }
+        return !userService.existsByUsername(username);
     }
 
 }
