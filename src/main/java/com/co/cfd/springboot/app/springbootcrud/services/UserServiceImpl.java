@@ -18,7 +18,7 @@ import com.co.cfd.springboot.app.springbootcrud.repositories.IUserRepository;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private IUserRepository repository;
+    private IUserRepository userRepository;
 
     @Autowired
     private IRoleRepository roleRepository;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
-        return (List<User>) repository.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
     @Override
@@ -47,7 +47,12 @@ public class UserServiceImpl implements IUserService {
 
         user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return repository.save(user);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
     }
 
 }
